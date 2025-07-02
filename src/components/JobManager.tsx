@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -87,11 +86,17 @@ const JobManager = () => {
     setLoading(true);
 
     try {
-      const payload = {
-        ...formData,
+      const payload: any = {
         search_query: formData.search_query.split(',').map(term => term.trim()),
-        weekdays: formData.weekdays.length > 0 ? formData.weekdays : undefined
+        from_date: formData.from_date,
+        to_date: formData.to_date,
+        schedule: formData.schedule,
+        active: formData.active
       };
+
+      if (formData.weekdays.length > 0) {
+        payload.weekdays = formData.weekdays;
+      }
 
       if (editingJob) {
         payload.id = editingJob.id;
