@@ -26,7 +26,7 @@ export default {
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
 				primary: {
-					DEFAULT: 'hsl(220, 85%, 45%)', // Azul CPIS
+					DEFAULT: 'hsl(100, 50%, 31%)', // Nova cor verde #3A7C22 em HSL
 					foreground: 'hsl(0, 0%, 100%)'
 				},
 				secondary: {
@@ -64,9 +64,9 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				cpis: {
-					blue: 'hsl(220, 85%, 45%)',
-					'blue-light': 'hsl(220, 85%, 60%)',
-					'blue-dark': 'hsl(220, 85%, 35%)',
+					blue: 'hsl(100, 50%, 31%)', // Nova cor verde #3A7C22 em HSL
+					'blue-light': 'hsl(100, 50%, 40%)', // Versão mais clara
+					'blue-dark': 'hsl(100, 50%, 25%)', // Versão mais escura
 					gray: 'hsl(210, 10%, 50%)',
 					'gray-light': 'hsl(210, 10%, 95%)'
 				}
