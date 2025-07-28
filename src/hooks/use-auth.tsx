@@ -43,7 +43,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   useEffect(() => {
     const verifyToken = async (tokenToVerify: string) => {
       try {
-        const response = await fetch('http://54.233.39.118/verify-token', {
+        const response = await fetch('https://54.233.39.118/verify-token', {
           headers: {
             'Authorization': `Bearer ${tokenToVerify}`,
           },

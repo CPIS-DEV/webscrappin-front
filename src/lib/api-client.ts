@@ -1,5 +1,5 @@
 // Utility para fazer requisições autenticadas à API
-const API_BASE_URL = 'http://54.233.39.118';
+const API_BASE_URL = 'https://54.233.39.118';
 
 interface ApiError {
   status: string;
