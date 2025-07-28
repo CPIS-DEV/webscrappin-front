@@ -9,34 +9,55 @@ All colors MUST be HSL.
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 240 10% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 240 10% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 240 10% 15%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 98 48% 31%;
+    --primary-foreground: 0 0% 98%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 98 25% 92%;
+    --secondary-foreground: 98 48% 31%;
 
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 98 30% 85%;
+    --accent-foreground: 98 48% 31%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --ring: 98 48% 31%;
+    
+    --success: 142 76% 36%;
+    --success-foreground: 355 7% 97%;
+    
+    --warning: 48 96% 53%;
+    --warning-foreground: 26 83% 14%;
+    
+    --gradient-primary: linear-gradient(135deg, hsl(98 48% 31%), hsl(98 55% 25%));
+    --gradient-secondary: linear-gradient(135deg, hsl(98 25% 92%), hsl(98 20% 88%));
+    
+    --shadow-soft: 0 4px 12px -2px hsl(98 48% 31% / 0.1);
+    --shadow-medium: 0 8px 25px -5px hsl(98 48% 31% / 0.15);
+    
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     --radius: 0.5rem;
+    
+    /* CPIS Brand Colors */
+    --cpis-blue: 213 94% 68%;
+    --cpis-blue-dark: 213 94% 58%;
+    --cpis-gray-light: 220 14% 96%;
+    --cpis-green: 142 76% 36%;
+    --cpis-green-dark: 142 76% 26%;
 
     --sidebar-background: 0 0% 98%;
 
