@@ -18,7 +18,12 @@ interface SearchResult {
   message?: string;
 }
 
-export function ManualSearch() {
+interface ManualSearchProps {
+  onSearchStart?: () => void;
+  onSearchEnd?: () => void;
+}
+
+export function ManualSearch({ onSearchStart, onSearchEnd }: ManualSearchProps) {
   const [searchTags, setSearchTags] = useState<string[]>([]);
   const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate] = useState("");
@@ -30,6 +35,7 @@ export function ManualSearch() {
   const today = new Date().toISOString().split('T')[0];
 
   const handleSearch = async () => {
+    if (onSearchStart) onSearchStart();
     if (searchTags.length === 0) {
       toast({
         title: "Erro",
@@ -97,6 +103,7 @@ export function ManualSearch() {
       });
     } finally {
       setLoading(false);
+      if (onSearchEnd) onSearchEnd();
     }
   };
 

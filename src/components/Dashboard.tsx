@@ -35,6 +35,7 @@ export function Dashboard() {
     inactiveJobs: 0
   });
   const [loading, setLoading] = useState(true);
+  const [isManualSearchRunning, setIsManualSearchRunning] = useState(false);
   const { toast } = useToast();
   const { user, logout } = useAuth();
 
@@ -258,26 +259,29 @@ export function Dashboard() {
         {/* Main Content */}
         <Tabs defaultValue="search" className="space-y-6">
           <TabsList className="grid w-full grid-cols-4">
-            <TabsTrigger value="search" className="flex items-center gap-2">
+            <TabsTrigger value="search" className="flex items-center gap-2" disabled={isManualSearchRunning}>
               <Search className="w-4 h-4" />
               Busca Manual
             </TabsTrigger>
-            <TabsTrigger value="schedule" className="flex items-center gap-2">
+            <TabsTrigger value="schedule" className="flex items-center gap-2" disabled={isManualSearchRunning}>
               <Calendar className="w-4 h-4" />
               Agendamentos
             </TabsTrigger>
-            <TabsTrigger value="settings" className="flex items-center gap-2">
+            <TabsTrigger value="settings" className="flex items-center gap-2" disabled={isManualSearchRunning}>
               <Settings className="w-4 h-4" />
               Configurações
             </TabsTrigger>
-            <TabsTrigger value="logs" className="flex items-center gap-2">
+            <TabsTrigger value="logs" className="flex items-center gap-2" disabled={isManualSearchRunning}>
               <FileText className="w-4 h-4" />
               Logs do Sistema
             </TabsTrigger>
           </TabsList>
 
           <TabsContent value="search">
-            <ManualSearch />
+            <ManualSearch 
+              onSearchStart={() => setIsManualSearchRunning(true)}
+              onSearchEnd={() => setIsManualSearchRunning(false)}
+            />
           </TabsContent>
 
           <TabsContent value="schedule">
