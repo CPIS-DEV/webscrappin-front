@@ -2,7 +2,7 @@
 // Detecta se está em desenvolvimento ou produção
 const API_BASE_URL = import.meta.env.DEV 
   ? 'http://localhost:5000'  // Desenvolvimento
-  : 'https://54.233.39.118'; // Produção
+  : 'https://api.monitoramento.cpis.com.br'; // Produção
 
 interface ApiError {
   status: string;

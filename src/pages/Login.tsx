@@ -36,7 +36,7 @@ const Login = () => {
     setError('');
 
     try {
-      const response = await fetch('https://54.233.39.118/login', {
+      const response = await fetch('https://api.monitoramento.cpis.com.br/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
