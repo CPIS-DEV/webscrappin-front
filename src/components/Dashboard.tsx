@@ -169,7 +169,26 @@ export function Dashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-secondary/20 to-background">
+    <div className="min-h-screen bg-gradient-to-br from-secondary/20 to-background relative">
+      {/* Overlay bloqueio */}
+      {isManualSearchRunning && (
+        <div
+          className="fixed inset-0 z-50 bg-black/30 flex items-center justify-center cursor-not-allowed select-none"
+          onClick={() => {
+            toast({
+              title: "Atenção",
+              description: "Não são permitidas trocas de telas enquanto buscas estão sendo executadas.",
+              variant: "destructive"
+            });
+          }}
+        >
+          <div className="bg-white rounded-lg shadow-xl p-6 flex flex-col items-center gap-3">
+            <Search className="w-8 h-8 text-primary animate-pulse" />
+            <span className="text-lg font-semibold text-primary">Busca manual em andamento...</span>
+            <span className="text-sm text-muted-foreground text-center">Por favor, aguarde o término da busca para continuar navegando.</span>
+          </div>
+        </div>
+      )}
       <div className="container mx-auto p-6">
         {/* Header */}
         <div className="mb-8">
@@ -259,19 +278,19 @@ export function Dashboard() {
         {/* Main Content */}
         <Tabs defaultValue="search" className="space-y-6">
           <TabsList className="grid w-full grid-cols-4">
-            <TabsTrigger value="search" className="flex items-center gap-2" disabled={isManualSearchRunning}>
+            <TabsTrigger value="search" className="flex items-center gap-2">
               <Search className="w-4 h-4" />
               Busca Manual
             </TabsTrigger>
-            <TabsTrigger value="schedule" className="flex items-center gap-2" disabled={isManualSearchRunning}>
+            <TabsTrigger value="schedule" className="flex items-center gap-2">
               <Calendar className="w-4 h-4" />
               Agendamentos
             </TabsTrigger>
-            <TabsTrigger value="settings" className="flex items-center gap-2" disabled={isManualSearchRunning}>
+            <TabsTrigger value="settings" className="flex items-center gap-2">
               <Settings className="w-4 h-4" />
               Configurações
             </TabsTrigger>
-            <TabsTrigger value="logs" className="flex items-center gap-2" disabled={isManualSearchRunning}>
+            <TabsTrigger value="logs" className="flex items-center gap-2">
               <FileText className="w-4 h-4" />
               Logs do Sistema
             </TabsTrigger>
