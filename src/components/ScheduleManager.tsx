@@ -18,6 +18,7 @@ interface CronJob {
   schedule: string;
   weekdays?: string[];
   active: boolean;
+  quant_dias?: number;
 }
 
 interface ScheduleManagerProps {
@@ -43,7 +44,8 @@ export function ScheduleManager({ onUpdate }: ScheduleManagerProps) {
     search_query: [],
     schedule: "",
     weekdays: [],
-    active: true
+    active: true,
+    quant_dias: 0
   });
   const { toast } = useToast();
 
@@ -88,7 +90,8 @@ export function ScheduleManager({ onUpdate }: ScheduleManagerProps) {
       search_query: [],
       schedule: "",
       weekdays: [],
-      active: true
+      active: true,
+      quant_dias: 0
     });
     setEditingJob(null);
   };
@@ -102,7 +105,8 @@ export function ScheduleManager({ onUpdate }: ScheduleManagerProps) {
     setEditingJob(job);
     setFormData({
       ...job,
-      search_query: Array.isArray(job.search_query) ? job.search_query : [job.search_query]
+      search_query: Array.isArray(job.search_query) ? job.search_query : [job.search_query],
+      quant_dias: job.quant_dias ?? 0
     });
     setDialogOpen(true);
   };
@@ -119,6 +123,7 @@ export function ScheduleManager({ onUpdate }: ScheduleManagerProps) {
 
     const jobData = {
       ...formData,
+      quant_dias: formData.quant_dias ?? 0,
       id: editingJob?.id
     };
 
@@ -307,6 +312,18 @@ export function ScheduleManager({ onUpdate }: ScheduleManagerProps) {
                       type="time"
                       value={formData.schedule}
                       onChange={(e) => setFormData({ ...formData, schedule: e.target.value })}
+                    />
+                  </div>
+
+                  {/* Campo quant_dias (opcional, padrão 0) */}
+                  <div className="space-y-2">
+                    <Label htmlFor="quant_dias">Quantidade de Dias (opcional)</Label>
+                    <Input
+                      id="quant_dias"
+                      type="number"
+                      min={0}
+                      value={formData.quant_dias ?? 0}
+                      onChange={e => setFormData({ ...formData, quant_dias: Number(e.target.value) })}
                     />
                   </div>
 
