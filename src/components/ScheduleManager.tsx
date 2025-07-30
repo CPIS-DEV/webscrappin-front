@@ -8,7 +8,7 @@ import { Switch } from "@/components/ui/switch";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
-import { Plus, Edit, Trash2, PlayCircle, PauseCircle, Clock, Calendar } from "lucide-react";
+import { Plus, Edit, Trash2, PlayCircle, PauseCircle, Clock, Calendar, CalendarX } from "lucide-react";
 import { TagInput } from "./TagInput";
 import { authenticatedFetch } from "../lib/api-client";
 
@@ -317,7 +317,7 @@ export function ScheduleManager({ onUpdate }: ScheduleManagerProps) {
 
                   {/* Campo quant_dias (opcional, padrão 0) */}
                   <div className="space-y-2">
-                    <Label htmlFor="quant_dias">Quantidade de Dias (opcional)</Label>
+                    <Label htmlFor="quant_dias">Quantidade de dias em que a busca deve ser realizada</Label>
                     <Input
                       id="quant_dias"
                       type="number"
@@ -410,6 +410,12 @@ export function ScheduleManager({ onUpdate }: ScheduleManagerProps) {
                         <p className="flex items-center gap-2">
                           <Calendar className="w-4 h-4" />
                           {formatWeekdays(job.weekdays)}
+                        </p>
+                        <p className="flex items-center gap-2">
+                          <CalendarX className="w-4 h-4" />
+                          {job.quant_dias !== undefined && job.quant_dias > 0
+                            ? `Buscar nos últimos ${job.quant_dias} dias`
+                            : "Buscar nos dias atuais"}
                         </p>
                       </div>
                     </div>
