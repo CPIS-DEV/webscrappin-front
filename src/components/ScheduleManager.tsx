@@ -8,7 +8,7 @@ import { Switch } from "@/components/ui/switch";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
-import { Plus, Edit, Trash2, PlayCircle, PauseCircle, Clock, Calendar, CalendarX } from "lucide-react";
+import { Plus, Edit, Trash2, PlayCircle, PauseCircle, Clock, Calendar, CalendarX, CalendarDays } from "lucide-react";
 import { TagInput } from "./TagInput";
 import { authenticatedFetch } from "../lib/api-client";
 
@@ -412,9 +412,9 @@ export function ScheduleManager({ onUpdate }: ScheduleManagerProps) {
                           {formatWeekdays(job.weekdays)}
                         </p>
                         <p className="flex items-center gap-2">
-                          <CalendarX className="w-4 h-4" />
+                          <CalendarDays className="w-4 h-4" />
                           {job.quant_dias !== undefined && job.quant_dias > 0
-                            ? `Buscar nos últimos ${job.quant_dias} dias`
+                            ? `Buscar nos últimos ${job.quant_dias + 1} dias`
                             : "Buscar nos dias atuais"}
                         </p>
                       </div>
