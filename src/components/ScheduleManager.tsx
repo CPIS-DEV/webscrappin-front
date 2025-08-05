@@ -432,7 +432,7 @@ export function ScheduleManager({ onUpdate }: ScheduleManagerProps) {
                         </p>
                         <p className="flex items-center gap-2">
                           <CalendarDays className="w-4 h-4" />
-                          {job.email_envio !== undefined && !job.email_envio
+                          {job.email_envio !== undefined && job.email_envio !== ""
                             ? `Resultados enviados para ${job.email_envio}`
                             : "Resultados enviados para o email principal do sistema"}
                         </p>
