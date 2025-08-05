@@ -81,36 +81,36 @@ export function SystemLogs() {
   };
 
   const parseLogEntries = (logText: string): LogEntry[] => {
-    const entries: LogEntry[] = [];
-    const lines = logText.split('\n');
-    
-    let currentEntry: Partial<LogEntry> = {};
-    
-    for (const line of lines) {
+  const entries: LogEntry[] = [];
+  const lines = logText.split('\n');
+
+  let currentEntry: Partial<LogEntry & { contentLines: string[] }> = {};
+
+  for (const line of lines) {
       if (line.includes('Busca') && (line.includes('realizada') || line.includes('agendada'))) {
-        if (currentEntry.content) {
+        if (currentEntry.contentLines) {
+          currentEntry.content = currentEntry.contentLines.join('\n');
           entries.push(currentEntry as LogEntry);
         }
         currentEntry = {
           timestamp: line.substring(0, 19),
           type: line.includes('agendada') ? 'agendamento' : 'busca',
-          content: line
+          contentLines: [line]
         };
       } else if (line.includes('encontrados') && line.includes('resultados')) {
         const match = line.match(/(\d+)\s+resultados/);
-        if (match && currentEntry.content !== undefined) {
+        if (match && currentEntry.contentLines) {
           currentEntry.results = parseInt(match[1]);
-          currentEntry.content += '\n' + line;
+          currentEntry.contentLines.push(line);
         }
-      } else if (currentEntry.content !== undefined) {
-        currentEntry.content += '\n' + line;
+      } else if (currentEntry.contentLines) {
+        currentEntry.contentLines.push(line);
       }
     }
-    
-    if (currentEntry.content) {
+    if (currentEntry.contentLines) {
+      currentEntry.content = currentEntry.contentLines.join('\n');
       entries.push(currentEntry as LogEntry);
     }
-    
     return entries.reverse();
   };
 
