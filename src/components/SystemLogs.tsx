@@ -102,7 +102,7 @@ export function SystemLogs() {
           currentEntry.results = parseInt(match[1]);
           currentEntry.content += '\n' + line;
         }
-      } else if (line.trim() && currentEntry.content !== undefined) {
+      } else if (currentEntry.content !== undefined) {
         currentEntry.content += '\n' + line;
       }
     }
