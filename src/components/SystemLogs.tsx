@@ -91,7 +91,6 @@ export function SystemLogs() {
         if (currentEntry.content) {
           entries.push(currentEntry as LogEntry);
         }
-        
         currentEntry = {
           timestamp: line.substring(0, 19),
           type: line.includes('agendada') ? 'agendamento' : 'busca',
@@ -99,11 +98,11 @@ export function SystemLogs() {
         };
       } else if (line.includes('encontrados') && line.includes('resultados')) {
         const match = line.match(/(\d+)\s+resultados/);
-        if (match && currentEntry.content) {
+        if (match && currentEntry.content !== undefined) {
           currentEntry.results = parseInt(match[1]);
           currentEntry.content += '\n' + line;
         }
-      } else if (line.trim() && currentEntry.content) {
+      } else if (line.trim() && currentEntry.content !== undefined) {
         currentEntry.content += '\n' + line;
       }
     }
@@ -112,7 +111,7 @@ export function SystemLogs() {
       entries.push(currentEntry as LogEntry);
     }
     
-    return entries.reverse(); // Mostrar mais recentes primeiro
+    return entries.reverse();
   };
 
   const getEntryIcon = (type: string, results?: number) => {
