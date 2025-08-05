@@ -87,7 +87,6 @@ export function SystemLogs() {
           let currentEntry: Partial<LogEntry & { contentLines: string[] }> = {};
 
           for (const line of lines) {
-              console.log(line);
               if (line.includes('Busca') && (line.includes('realizada') || line.includes('agendada'))) {
                 if (currentEntry.contentLines) {
                   currentEntry.content = currentEntry.contentLines.join('\n');
@@ -99,6 +98,7 @@ export function SystemLogs() {
                   contentLines: [line]
                 };
               } else if (line.includes('encontrados') && line.includes('resultados')) {
+                console.log(line);
                 const match = line.match(/(\d+)\s+resultados/);
                 if (match && currentEntry.contentLines) {
                   currentEntry.results = parseInt(match[1]);
