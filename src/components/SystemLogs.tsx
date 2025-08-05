@@ -88,8 +88,8 @@ export function SystemLogs() {
 
           for (const line of lines) {
               if (line.includes('Busca') && (line.includes('realizada') || line.includes('agendada'))) {
-                console.log(line);
                 if (currentEntry.contentLines) {
+                  console.log(line);
                   currentEntry.content = currentEntry.contentLines.join('\n');
                   entries.push(currentEntry as LogEntry);
                 }
