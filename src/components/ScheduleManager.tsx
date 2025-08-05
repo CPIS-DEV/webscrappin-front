@@ -19,6 +19,7 @@ interface CronJob {
   weekdays?: string[];
   active: boolean;
   quant_dias?: number;
+  email_envio?: string;
 }
 
 interface ScheduleManagerProps {
@@ -45,7 +46,8 @@ export function ScheduleManager({ onUpdate }: ScheduleManagerProps) {
     schedule: "",
     weekdays: [],
     active: true,
-    quant_dias: 0
+    quant_dias: 0,
+    email_envio: ""
   });
   const { toast } = useToast();
 
@@ -91,7 +93,8 @@ export function ScheduleManager({ onUpdate }: ScheduleManagerProps) {
       schedule: "",
       weekdays: [],
       active: true,
-      quant_dias: 0
+      quant_dias: 0,
+      email_envio: ""
     });
     setEditingJob(null);
   };
@@ -327,6 +330,16 @@ export function ScheduleManager({ onUpdate }: ScheduleManagerProps) {
                     />
                   </div>
 
+                  <div className="space-y-2">
+                    <Label htmlFor="email_envio">Email para Envio dos resultados</Label>
+                    <Input
+                      id="email_envio"
+                      type="email"
+                      value={formData.email_envio ?? ""}
+                      onChange={e => setFormData({ ...formData, email_envio: e.target.value })}
+                    />
+                  </div>
+
                   <div className="space-y-3">
                     <Label>Dias da Semana (deixe vazio para todos os dias)</Label>
                     <div className="grid grid-cols-2 gap-2">
@@ -416,6 +429,12 @@ export function ScheduleManager({ onUpdate }: ScheduleManagerProps) {
                           {job.quant_dias !== undefined && job.quant_dias > 0
                             ? `Buscar nos últimos ${job.quant_dias + 1} dias`
                             : "Buscar nos dias atuais"}
+                        </p>
+                        <p className="flex items-center gap-2">
+                          <CalendarDays className="w-4 h-4" />
+                          {job.email_envio !== undefined && !job.email_envio
+                            ? `Resultados enviados para ${job.email_envio}`
+                            : "Resultados enviados para o email principal do sistema"}
                         </p>
                       </div>
                     </div>
