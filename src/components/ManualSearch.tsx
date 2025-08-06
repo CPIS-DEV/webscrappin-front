@@ -27,6 +27,7 @@ export function ManualSearch({ onSearchStart, onSearchEnd }: ManualSearchProps) 
   const [searchTags, setSearchTags] = useState<string[]>([]);
   const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate] = useState("");
+  const [emailEnvio, setEmailEnvio] = useState("");
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<SearchResult | null>(null);
   const { toast } = useToast();
@@ -63,7 +64,8 @@ export function ManualSearch({ onSearchStart, onSearchEnd }: ManualSearchProps) 
         body: JSON.stringify({
           search_query: searchTags,
           from_date: fromDate,
-          to_date: toDate
+          to_date: toDate,
+          email_envio: emailEnvio
         })
       });
 
@@ -186,6 +188,16 @@ export function ManualSearch({ onSearchStart, onSearchEnd }: ManualSearchProps) 
                 min={fromDate}
               />
             </div>
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="email_envio">Email para Envio dos resultados</Label>
+              <Input
+                id="email_envio"
+                type="email"
+                value={emailEnvio}
+                onChange={e => setEmailEnvio(e.target.value)}
+              />
           </div>
 
           <Button

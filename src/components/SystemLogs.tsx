@@ -98,7 +98,6 @@ export function SystemLogs() {
                   contentLines: [line]
                 };
               } else if (line.includes('encontrados') && line.includes('resultados')) {
-                console.log('Processing results line:', line);
                 const match = line.match(/(\d+)\s+resultados/);
                 if (match && currentEntry.contentLines) {
                   currentEntry.results = parseInt(match[1]);
